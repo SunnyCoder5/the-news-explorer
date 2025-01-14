@@ -1,0 +1,33 @@
+.main {
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  max-width: 1440px;
+  color: #ffffff;
+  justify-content: center;
+}
+
+.main__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__title {
+  font-family: "Roboto-Slab-Regular", sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 64px;
+  width: 580px;
+  padding-right: 40px;
+  height: 128px;
+  margin-top: 160px;
+}
+
+.main__subtitle {
+  font-family: "Roboto-Regular", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
