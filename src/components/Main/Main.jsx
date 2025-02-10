@@ -1,5 +1,7 @@
 import "./Main.css";
 import SearchForm from "../SearchForm/SearchForm";
+import About from "../About/About";
+import SearchResults from "../SearchResults/SearchResults";
 
 function Main() {
   return (
@@ -11,6 +13,8 @@ function Main() {
           account.
         </p>
         <SearchForm />
+        <SearchResults />
+        <About />
       </div>
     </main>
   );

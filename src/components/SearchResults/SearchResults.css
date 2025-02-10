@@ -1,0 +1,41 @@
+.search-results {
+  background-color: #f5f6f7;
+  padding: 80px 104px;
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  width: 100%;
+}
+
+.search-results__title {
+  font-family: "Roboto-Slab", "Courier New", Courier, monospace;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 46px;
+  margin: 0 0 64px 0;
+  color: #1a1b22;
+  margin-left: 102px;
+}
+
+.search-results__load-more {
+  background-color: #fff;
+  border-style: none;
+  border-radius: 100px;
+  color: #1a1b22;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  padding: 20px 98px;
+  margin: 64px auto 0;
+  cursor: pointer;
+}
+
+.search-results__load-more:hover:not([disabled]) {
+  background-color: #e8e8e8;
+}
+
+.search-results__load-more:disabled {
+  display: none;
+}

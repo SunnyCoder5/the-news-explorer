@@ -1,0 +1,88 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  padding: 20px 0;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.nav__links-logged-in {
+  color: #1a1b22;
+}
+
+.nav__links-logged-out {
+  color: white;
+}
+
+.nav__link {
+  background-color: transparent;
+  border-style: none;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-left: 76px;
+  cursor: pointer;
+  color: white;
+}
+
+.nav__link-saved {
+  color: #1a1b22;
+}
+
+.nav__current-user {
+  background-color: transparent;
+  max-width: 320px;
+  font-size: 18px;
+  padding: 12px 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  margin-left: 64px;
+  cursor: pointer;
+}
+.nav__current-user_name {
+  background-color: transparent;
+  line-height: 24px;
+  padding: 0;
+  border-style: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0;
+  font-weight: 500;
+}
+
+.nav__current-user_name_signout {
+  background-color: transparent;
+  background-image: url(../../assets/sign-out_saved.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 12px;
+  margin-left: 16px;
+  border-style: none;
+}
+.nav__signin {
+  background-color: transparent;
+  margin-left: 42px;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 12px 17px;
+  width: 176px;
+  border: 1px solid #fff;
+  border-radius: 100px;
+  color: #fff;
+  cursor: pointer;
+}

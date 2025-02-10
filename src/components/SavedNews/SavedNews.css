@@ -1,0 +1,15 @@
+.saved-news__container {
+  background-color: white;
+  padding: 0;
+  margin: 0;
+}
+
+.saved-news__list {
+  padding: 62px 104px;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 30%));
+  grid-auto-rows: auto;
+  gap: 16px;
+}

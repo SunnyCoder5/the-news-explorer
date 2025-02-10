@@ -1,11 +1,16 @@
 import "./Header.css";
 import Navigation from "../Navigation/Navigation";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 
-function Header() {
+function Header({ isLoggedIn }) {
+  const { pathname } = useLocation();
+
   return (
-    <header className="header">
+    <header
+      className={`header ${pathname === "/saved-news" && "header__saved"}`}
+    >
       <p className="header__title">NewsExplorer</p>
-      <Navigation />
+      <Navigation isLoggedIn={isLoggedIn} />
     </header>
   );
 }
