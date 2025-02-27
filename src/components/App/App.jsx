@@ -13,11 +13,44 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import SavedNews from "../SavedNews/SavedNews";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [activeModal, setActiveModal] = useState("");
+
+  const handleLoginClick = () => {
+    setActiveModal("login");
+  };
+
+  const handleLogin = ({ email, password }) => {
+    console.log(activeModal);
+  };
+
+  const closeActiveModal = () => {
+    setActiveModal("");
+  };
+
+  useEffect(() => {
+    if (!activeModal) return;
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   const { pathname } = useLocation();
+
+  const onLogout = () => {
+    setIsLoggedIn(false);
+  };
 
   return (
     <div className="page">
@@ -34,8 +67,11 @@ function App() {
               path="/"
               element={
                 <>
-                  <Header isLoggedIn={isLoggedIn} />
-                  <Main />
+                  <Header
+                    isLoggedIn={isLoggedIn}
+                    handleLoginClick={handleLoginClick}
+                  />
+                  <Main isLoggedIn={isLoggedIn} />
                 </>
               }
             />
@@ -44,7 +80,7 @@ function App() {
               path="/saved-news"
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <SavedNews />
+                  <SavedNews isLoggedIn={isLoggedIn} onLogout={onLogout} />
                 </ProtectedRoute>
               }
             />
@@ -62,6 +98,11 @@ function App() {
 
           <Footer />
         </div>
+        <LoginModal
+          isOpen={activeModal === "login"}
+          closeActiveModal={closeActiveModal}
+          onSubmit={handleLogin}
+        />
       </div>
     </div>
   );

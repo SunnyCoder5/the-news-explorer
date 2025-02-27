@@ -3,7 +3,7 @@ import "./SearchResults.css";
 import NewsCardsList from "../NewsCardsList/NewsCardsList";
 import { useState } from "react";
 
-function SearchResults({}) {
+function SearchResults({ isLoggedIn }) {
   return (
     <section className="search-results">
       <NewsCardsList />

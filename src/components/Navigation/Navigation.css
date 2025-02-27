@@ -61,17 +61,33 @@
   max-width: 100%;
   margin: 0;
   font-weight: 500;
+  color: #fff;
 }
 
-.nav__current-user_name_signout {
+.nav__current-user_name_saved {
+  color: #1a1b22;
+}
+
+.nav__current-user_signout {
   background-color: transparent;
-  background-image: url(../../assets/sign-out_saved.svg);
+  background-image: url(../../assets/sign-out.svg);
   background-repeat: no-repeat;
   background-size: cover;
   padding: 12px;
   margin-left: 16px;
   border-style: none;
 }
+
+.nav__current-user_signout_saved {
+  background-image: url(../../assets/sign-out_saved.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 12px;
+  margin-left: 16px;
+  border-style: none;
+}
+
 .nav__signin {
   background-color: transparent;
   margin-left: 42px;

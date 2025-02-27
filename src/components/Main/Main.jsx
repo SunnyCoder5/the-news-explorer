@@ -3,7 +3,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import About from "../About/About";
 import SearchResults from "../SearchResults/SearchResults";
 
-function Main() {
+function Main({}) {
   return (
     <main className="main">
       <div className="main__content">

@@ -1,7 +1,7 @@
 import "./Navigation.css";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 
-function Navigation({ isLoggedIn }) {
+function Navigation({ isLoggedIn, handleLoginClick }) {
   const { pathname } = useLocation();
 
   return (
@@ -24,14 +24,28 @@ function Navigation({ isLoggedIn }) {
               Saved articles
             </button>
             <button className="nav__current-user">
-              <p className="nav__current-user_name">Elise</p>
-              <div className="nav__current-user_name_signout"></div>
+              <p
+                className={`nav__current-user_name ${
+                  pathname === "/saved-news" && "nav__current-user_name_saved"
+                }`}
+              >
+                Elise
+              </p>
+              <div
+                className={`nav__link ${
+                  pathname === "/saved-news"
+                    ? "nav__current-user_signout_saved"
+                    : "nav__current-user_signout"
+                }`}
+              ></div>
             </button>
           </div>
         ) : (
           <div className="nav__links nav__links-logged-out">
             <button className="nav__link">Home</button>
-            <button className="nav__link">Sign in</button>
+            <button className="nav__link" onClick={handleLoginClick}>
+              Sign in
+            </button>
           </div>
         )}
       </div>
