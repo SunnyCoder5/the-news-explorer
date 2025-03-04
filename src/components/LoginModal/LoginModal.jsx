@@ -62,14 +62,15 @@ const LoginModal = ({
       </label>
       <div className="modal__buttons-wrapper">
         <button type="submit" className="modal__form-button">
-          Log In
+          Sign in
         </button>
         <button
           type="button"
           className="modal__or-signup-button"
           onClick={openRegisterModal}
         >
-          or Sign Up
+          or
+          <span className="modal__or-signup-button_span"> Sign up</span>
         </button>
       </div>
     </ModalWithForm>
