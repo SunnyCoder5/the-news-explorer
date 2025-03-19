@@ -17,7 +17,7 @@
   width: 100%;
   margin: 0;
   padding-left: 24px;
-  font-family: "Roboto-Regular", "sans-serif";
+  font-family: 'Roboto-Regular', 'sans-serif';
   border: none;
   font-size: 16px;
   line-height: 1.375;
@@ -32,7 +32,7 @@
 .search-form__submit-button {
   background-color: #2f71e5;
   padding: 0;
-  font-family: "Roboto-Medium", "sans-serif";
+  font-family: 'Roboto-Medium', 'sans-serif';
   font-weight: 500;
   color: #fff;
   height: 64px;
@@ -44,6 +44,6 @@
 }
 
 .search-form__submit-button:hover {
-  cursor: url("../../assets/custom-cursor.svg"), pointer;
+  cursor: url('../../assets/custom-cursor.svg'), pointer;
   background-color: #1a5ed3cc;
 }

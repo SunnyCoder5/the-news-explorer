@@ -12,15 +12,18 @@
 }
 
 .header__title {
-  font-family: "Roboto-Slab-Bold", sans-serif;
+  font-family: 'Roboto-Slab-Bold', sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   margin-left: 104px;
-  /*color: white;*/
+  color: white;
   margin-top: 30px;
 }
 
+.header__title-link {
+  text-decoration: none;
+}
 /*
 .header__title_saved {
   color: #1a1b22;

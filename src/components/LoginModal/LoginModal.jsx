@@ -1,7 +1,7 @@
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import React, { useState, useEffect } from "react";
-import "./LoginModal.css";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import React, { useState, useEffect } from 'react';
+import './LoginModal.css';
+import ModalWithForm from '../ModalWithForm/ModalWithForm';
 
 const LoginModal = ({
   isOpen,
@@ -10,12 +10,12 @@ const LoginModal = ({
   closeActiveModal,
 }) => {
   const [data, setData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   useEffect(() => {
-    setData({ email: "", password: "" });
+    setData({ email: '', password: '' });
   }, [isOpen]);
 
   const handleSubmit = (e) => {
@@ -31,7 +31,7 @@ const LoginModal = ({
       onSubmit={handleSubmit}
     >
       <label className="modal__label">
-        Email{" "}
+        Email{' '}
         <input
           type="email"
           className="modal__input"

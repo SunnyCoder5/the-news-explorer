@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  font-family: 'CabinetGrotesk-Bold', Arial, sans-serif;
   color: black;
   z-index: 1;
   visibility: hidden;
@@ -56,12 +56,12 @@
   padding-left: 28px;
   max-width: 140px;
   width: 100%;
-  font-family: "Roboto-Black", Arial, sans-serif;
+  font-family: 'Roboto-Black', Arial, sans-serif;
   font-size: 24px;
 }
 
 .modal__close {
-  background: url(../../assets/close-icon_white.svg) center no-repeat;
+  background: url(../../assets/close_icon_white.svg) center no-repeat;
   color: #ffffff;
   border: none;
   position: absolute;
@@ -87,7 +87,7 @@
 
 .modal__picture-container-title {
   color: white;
-  font-family: "Inter", Arial, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;

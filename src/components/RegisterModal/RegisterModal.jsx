@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import "./RegisterModal.css";
+import React, { useState, useEffect } from 'react';
+import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import './RegisterModal.css';
 
 const RegisterModal = ({
   closeModal,
   isOpen,
-  buttonClass = "modal__form-button",
+  buttonClass = 'modal__form-button',
   openLoginModal,
   onSignUp,
 }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [avatar, setAvatar] = useState('');
   const [isButtonActive, setIsButtonActive] = useState(false);
 
   const handleSubmit = (e) => {
@@ -22,10 +22,10 @@ const RegisterModal = ({
 
   useEffect(() => {
     setIsButtonActive(
-      email.trim() !== "" &&
-        password.trim() !== "" &&
-        name.trim() !== "" &&
-        avatar.trim() !== ""
+      email.trim() !== '' &&
+        password.trim() !== '' &&
+        name.trim() !== '' &&
+        avatar.trim() !== ''
     );
   }, [email, password, name, avatar]);
 
@@ -36,12 +36,12 @@ const RegisterModal = ({
       isOpen={isOpen}
       onSubmit={handleSubmit}
       buttonClass={`modal__form-button ${
-        isButtonActive ? "modal__form-button_active" : ""
+        isButtonActive ? 'modal__form-button_active' : ''
       }`}
       handleCloseModal={closeModal}
     >
       <label className="modal__label">
-        Email*{" "}
+        Email*{' '}
         <input
           type="email"
           className="modal__input"
@@ -53,7 +53,7 @@ const RegisterModal = ({
         />
       </label>
       <label className="modal__label">
-        Password*{" "}
+        Password*{' '}
         <input
           type="password"
           className="modal__input"
@@ -65,7 +65,7 @@ const RegisterModal = ({
         />
       </label>
       <label className="modal__label">
-        Name*{""}
+        Name*{''}
         <input
           type="text"
           className="modal__input"
@@ -78,7 +78,7 @@ const RegisterModal = ({
         />
       </label>
       <label className="modal__label">
-        Avatar URL*{""}
+        Avatar URL*{''}
         <input
           type="url"
           className="modal__input modal__input_signUp "
@@ -94,7 +94,7 @@ const RegisterModal = ({
         <button
           type="submit"
           className={`${buttonClass} ${
-            isButtonActive ? "modal__form-button_filled" : ""
+            isButtonActive ? 'modal__form-button_filled' : ''
           }`}
         >
           Sign Up

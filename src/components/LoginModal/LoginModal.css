@@ -9,14 +9,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
 }
 
 .modal__or-signup-button {
   margin-top: 16px;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
 }

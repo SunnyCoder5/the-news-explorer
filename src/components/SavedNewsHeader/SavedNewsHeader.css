@@ -11,7 +11,7 @@
 }
 
 .saved-news__header_subtitle {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
@@ -19,7 +19,7 @@
 }
 
 .saved-news__header_info {
-  font-family: "Roboto-Slab-Regular", "Courier New", Courier, monospace;
+  font-family: 'Roboto-Slab-Regular', 'Courier New', Courier, monospace;
   font-size: 40px;
   font-weight: 400;
   line-height: 46px;
@@ -27,7 +27,7 @@
 }
 
 .saved-news__header_keywords {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
@@ -35,7 +35,7 @@
 }
 
 .saved-news__header_keywords_span {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 18px;
   font-weight: 700;
   line-height: 24px;

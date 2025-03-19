@@ -1,6 +1,7 @@
 .card {
   background-color: #fff;
   max-width: 400px;
+  max-height: 576px;
   overflow: hidden;
   border-radius: 16px;
   position: relative;
@@ -12,11 +13,14 @@
   width: 100%;
   box-sizing: border-box;
   display: flex;
+  padding: 24px;
   position: absolute;
+  right: 0;
+  justify-content: end;
+}
+
+.card__header_home {
   justify-content: flex-end;
-  top: 35px;
-  right: 24px;
-  align-items: center;
 }
 
 .card__header_saved-news {
@@ -25,7 +29,7 @@
 .card__keyword {
   background-color: #fff;
   border-radius: 10px;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -63,7 +67,7 @@
   border-radius: 10px;
   border-style: none;
   color: #000;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 40px;
@@ -73,8 +77,8 @@
   box-shadow: 0px 10px 22px 0px #3b4a741a;
   visibility: hidden;
   position: absolute;
-  top: -11px;
-  right: 45px;
+  top: 12px;
+  right: 70px;
 }
 
 .card__save-btn_unchecked:hover .card__signin-tooltip {
@@ -82,23 +86,23 @@
 }
 
 .card__image {
-  height: 272px;
-  width: 400px;
+  width: 100%;
 }
 
 .card__content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 20px 24px 0 24px;
+  padding: 0;
 }
 
 .card__text {
-  padding: 20px 24px 0 24px;
-  height: 304px;
+  padding: 0;
 }
 
 .card__date {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
@@ -107,7 +111,7 @@
 }
 
 .card__title {
-  font-family: "Roboto-Slab-Regular", Arial, sans-serif;
+  font-family: 'Roboto-Slab-Regular', Arial, sans-serif;
   font-size: 26px;
   font-weight: 400;
   line-height: 30px;
@@ -126,13 +130,13 @@
 }
 
 .card__preview {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
   color: #1a1b22;
   margin: 0;
-  max-height: 110px;
+  height: 110px;
   -webkit-box-orient: vertical;
   display: -webkit-box;
   line-clamp: 5;
@@ -143,16 +147,13 @@
 }
 
 .card__source {
-  font-family: "Roboto-Slab", "Courier New", Courier, monospace;
+  font-family: 'Roboto-Slab', 'Courier New', Courier, monospace;
   font-size: 16px;
   font-weight: 700;
-  line-height: 22px;
+  line-height: 20px;
   letter-spacing: 0.4px;
   color: #b6bcbf;
-  margin: 40px 24px 24px 24px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  padding: 0;
 }
 
 .card__delete_btn {
@@ -178,7 +179,7 @@
   border-radius: 10px;
   border-style: none;
   color: #000;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 40px;

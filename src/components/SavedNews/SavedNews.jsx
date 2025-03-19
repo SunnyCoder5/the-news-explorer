@@ -1,10 +1,10 @@
-import "./SavedNews.css";
-import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
-import Header from "../Header/Header";
-import { defaultNewsItems } from "../../utils/constatnts";
-import NewsCard from "../NewsCard/NewsCard";
+import './SavedNews.css';
+import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
+import Header from '../Header/Header';
+import { defaultNewsItems } from '../../utils/constants';
+import NewsCard from '../NewsCard/NewsCard';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 function SavedNews({ isLoggedIn, onLogout }) {
   const likedItems = defaultNewsItems.filter((item) => {

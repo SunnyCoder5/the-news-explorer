@@ -2,7 +2,7 @@
   display: flex;
   padding: 0;
   flex-direction: column;
-  max-width: 1440px;
+  width: 100%;
   color: #ffffff;
   justify-content: center;
   margin: 0;
@@ -10,14 +10,14 @@
 
 .main__content {
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   margin: 0;
 }
 
 .main__title {
-  font-family: "Roboto-Regular", sans-serif;
+  font-family: 'Roboto-Regular', sans-serif;
   font-weight: 400;
   font-size: 60px;
   line-height: 64px;
@@ -29,7 +29,7 @@
 }
 
 .main__subtitle {
-  font-family: "Roboto-Regular", sans-serif;
+  font-family: 'Roboto-Regular', sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;

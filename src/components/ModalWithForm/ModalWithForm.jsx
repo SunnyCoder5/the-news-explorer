@@ -1,4 +1,4 @@
-import "./ModalWithForm.css";
+import './ModalWithForm.css';
 
 function ModalWithForm({
   children,
@@ -9,7 +9,7 @@ function ModalWithForm({
   isOpen,
 }) {
   return (
-    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
+    <div className={`modal ${isOpen ? 'modal_opened' : ''}`}>
       <div className="modal__content">
         <p className="modal__title">{title}</p>
         <button

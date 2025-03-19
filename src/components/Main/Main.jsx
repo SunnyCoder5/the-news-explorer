@@ -1,9 +1,9 @@
-import "./Main.css";
-import SearchForm from "../SearchForm/SearchForm";
-import About from "../About/About";
-import SearchResults from "../SearchResults/SearchResults";
+import './Main.css';
+import SearchForm from '../SearchForm/SearchForm';
+import About from '../About/About';
+import SearchResults from '../SearchResults/SearchResults';
 
-function Main({}) {
+function Main({ handleSaveItem }) {
   return (
     <main className="main">
       <div className="main__content">
@@ -13,7 +13,7 @@ function Main({}) {
           account.
         </p>
         <SearchForm />
-        <SearchResults />
+        <SearchResults handleSaveItem={handleSaveItem} />
         <About />
       </div>
     </main>
