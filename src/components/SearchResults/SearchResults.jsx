@@ -19,6 +19,7 @@ function SearchResults({
         numResults={numResults}
         handleLikeItem={handleLikeItem}
         handleSaveItem={handleSaveItem}
+        isLoggedIn={isLoggedIn}
       />
       <button
         className="search-results__load-more"

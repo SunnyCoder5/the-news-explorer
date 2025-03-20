@@ -6,7 +6,7 @@ import NewsCard from '../NewsCard/NewsCard';
 
 import { useEffect } from 'react';
 
-function SavedNews({ isLoggedIn, onLogout }) {
+function SavedNews({ isLoggedIn, onLogout, handleRemoveLike }) {
   const likedItems = defaultNewsItems.filter((item) => {
     return item.isLiked === true;
   });
@@ -29,6 +29,8 @@ function SavedNews({ isLoggedIn, onLogout }) {
               key={item._id}
               item={item}
               defaultNewsItems={defaultNewsItems}
+              handleRemoveLike={handleRemoveLike}
+              isLoggedIn={isLoggedIn}
             />
           );
         })}

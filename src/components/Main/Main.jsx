@@ -2,8 +2,9 @@ import './Main.css';
 import SearchForm from '../SearchForm/SearchForm';
 import About from '../About/About';
 import SearchResults from '../SearchResults/SearchResults';
+import NothingFound from '../NothingFound/NothingFound';
 
-function Main({ handleSaveItem }) {
+function Main({ handleSaveItem, isLoggedIn, h }) {
   return (
     <main className="main">
       <div className="main__content">
@@ -13,7 +14,10 @@ function Main({ handleSaveItem }) {
           account.
         </p>
         <SearchForm />
-        <SearchResults handleSaveItem={handleSaveItem} />
+        <SearchResults
+          handleSaveItem={handleSaveItem}
+          isLoggedIn={isLoggedIn}
+        />
         <About />
       </div>
     </main>

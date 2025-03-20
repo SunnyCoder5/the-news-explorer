@@ -2,14 +2,17 @@
   background-color: white;
   padding: 0;
   margin: 0;
-  max-height: 1292px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
 }
 
 .saved-news__list {
   padding: 62px 104px;
-  margin: 0 auto;
+  margin: 0;
   display: grid;
-  justify-content: center;
+  justify-content: start;
   grid-template-columns: repeat(auto-fit, minmax(340px, 30%));
   grid-auto-rows: auto;
   gap: 16px;

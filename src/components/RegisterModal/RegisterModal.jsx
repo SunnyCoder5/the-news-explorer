@@ -8,6 +8,7 @@ const RegisterModal = ({
   buttonClass = 'modal__form-button',
   openLoginModal,
   onSignUp,
+  closeActiveModal,
 }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -32,7 +33,7 @@ const RegisterModal = ({
   return (
     <ModalWithForm
       title="Sign up"
-      onClose={closeModal}
+      onClose={closeActiveModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
       buttonClass={`modal__form-button ${
@@ -77,19 +78,7 @@ const RegisterModal = ({
           required
         />
       </label>
-      <label className="modal__label">
-        Avatar URL*{''}
-        <input
-          type="url"
-          className="modal__input modal__input_signUp "
-          id="avatarUrl"
-          name="avatar"
-          placeholder="Avatar URL"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
-          required
-        />
-      </label>
+
       <div className="modal__buttons-wrapper">
         <button
           type="submit"

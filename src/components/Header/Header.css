@@ -7,7 +7,12 @@
   color: white;
 }
 
-.header__saved {
+.header_saved {
+  display: flex;
+  flex-direction: row;
+  padding-right: 104px;
+  justify-content: space-between;
+  box-shadow: 0px -1px 0px 0px #d1d2d6 inset;
   color: #1a1b22;
 }
 
@@ -19,6 +24,16 @@
   margin-left: 104px;
   color: white;
   margin-top: 30px;
+}
+.header__title_saved {
+  font-family: 'Roboto-Slab-Bold', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin-left: 104px;
+  color: white;
+  margin-top: 30px;
+  color: #1a1b22;
 }
 
 .header__title-link {

@@ -17,6 +17,7 @@ function NewsCard({
   defaultNewsItems,
   item,
   handleLikeItem,
+  handleRemoveLike,
 }) {
   const { pathname } = useLocation();
 
@@ -38,7 +39,6 @@ function NewsCard({
   const onRemove = () => {
     handleRemoveLike(item);
     item.isLiked = false;
-    handle;
   };
 
   return (

@@ -17,18 +17,18 @@ import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import { defaultNewsItems } from '../../utils/constants';
-
 import { CurrentPageContext } from '../../contexts/CurrentPageContext.js';
+import InfoModal from '../InfoModal/InfoModal';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [activeModal, setActiveModal] = useState('');
-
-  const [currentPage, setCurrentPage] = useState('home');
+  const [activeModal, setActiveModal] = useState('success');
 
   const [savedItems, setSavedItems] = useState([]);
+
   const [keyword, setKeyword] = useState('');
+
   const [likedItems, setLikedItems] = useState(
     defaultNewsItems.filter((item) => {
       return item.isLiked === true;
@@ -39,7 +39,6 @@ function App() {
 
   const handleLoginClick = () => {
     setActiveModal('login');
-    card;
   };
 
   const handleLogin = ({ email, password }) => {
@@ -60,6 +59,14 @@ function App() {
 
   const handleLikeItem = (item) => {
     setLikedItems([item, ...likedItems]);
+  };
+
+  const handleRemoveLike = (card) => {
+    setLikedItems(
+      likedItems.filter((item) => {
+        return item !== card;
+      })
+    );
   };
 
   function isItemInArray(item, array) {
@@ -128,7 +135,11 @@ function App() {
               path="/saved-news"
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <SavedNews isLoggedIn={isLoggedIn} onLogout={onLogout} />
+                  <SavedNews
+                    isLoggedIn={isLoggedIn}
+                    onLogout={onLogout}
+                    handleRemoveLike={handleRemoveLike}
+                  />
                 </ProtectedRoute>
               }
             />
@@ -146,18 +157,31 @@ function App() {
 
           <Footer />
         </div>
-        <RegisterModal
-          isOpen={activeModal === 'signUp'}
-          onClose={closeActiveModal}
-          onSignUp={onSignUp}
-          openLoginModal={handleLoginModal}
-        />
-        <LoginModal
-          isOpen={activeModal === 'login'}
-          closeActiveModal={closeActiveModal}
-          onSubmit={handleLogin}
-          openRegisterModal={handleRegisterModal}
-        />
+        {activeModal === 'signUp' && (
+          <RegisterModal
+            isOpen={activeModal === 'signUp'}
+            closeActiveModal={closeActiveModal}
+            onSignUp={onSignUp}
+            openLoginModal={handleLoginModal}
+          />
+        )}
+        {activeModal === 'login' && (
+          <LoginModal
+            isOpen={activeModal === 'login'}
+            closeActiveModal={closeActiveModal}
+            onSubmit={handleLogin}
+            openRegisterModal={handleRegisterModal}
+          />
+        )}
+        {activeModal === 'success' && (
+          <InfoModal
+            title="Registration successfully completed!"
+            buttonText="Sign in"
+            onClose={closeActiveModal}
+            handleLoginClick={handleLoginClick}
+            isOpen={activeModal === 'success'}
+          />
+        )}
       </div>
     </div>
   );

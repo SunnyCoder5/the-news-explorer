@@ -21,13 +21,13 @@
 }
 
 .modal__content {
+  max-width: 358px;
+  background-color: #fff;
+  box-shadow: 0px 0px 25px 0px #00000026;
   position: relative;
-  padding: 0;
-  margin: 0;
-  width: 430px;
-  height: 380px;
-  background-color: white;
-  border-radius: 20px;
+  padding: 34px 36px 28px;
+  width: 100%;
+  border-radius: 16px;
 }
 
 .modal__content_type_login {
@@ -42,18 +42,13 @@
 }
 
 .modal__form {
-  box-sizing: border-box;
-  padding-left: 28px;
-  padding-right: 28px;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .modal__title {
-  margin-top: 28px;
   margin-bottom: 0;
-  padding-left: 28px;
   max-width: 140px;
   width: 100%;
   font-family: 'Roboto-Black', Arial, sans-serif;
@@ -61,7 +56,7 @@
 }
 
 .modal__close {
-  background: url(../../assets/close_icon_white.svg) center no-repeat;
+  background: url(../../assets/close-icon.svg) center no-repeat;
   color: #ffffff;
   border: none;
   position: absolute;
@@ -97,7 +92,7 @@
   padding: 0;
   text-align: start;
   width: 440px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   border: none;
   margin-top: 10px;
@@ -170,6 +165,7 @@ input::-ms-input-placeholder {
   color: #00000080;
   cursor: pointer;
   margin-left: 5px;
+  margin-top: 16px;
 }
 
 .modal__form-button_save-changes {

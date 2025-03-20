@@ -8,6 +8,8 @@ function NewsCardsList({
   numResults,
   handleLikeItem,
   handleSaveItem,
+  isLoggedIn,
+  handleRemoveLike,
 }) {
   return (
     <div className="news-cards-section">
@@ -22,6 +24,8 @@ function NewsCardsList({
                 handleLikeItem={handleLikeItem}
                 defaultNewsItems={defaultNewsItems}
                 handleSaveItem={handleSaveItem}
+                isLoggedIn={isLoggedIn}
+                handleRemoveLike={handleRemoveLike}
               />
             );
           })

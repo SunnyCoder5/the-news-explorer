@@ -10,7 +10,7 @@ function SavedNewsHeader({ totalLiked, keywords }) {
           Mariia, you have {totalLiked} saved articles
         </p>
         <p className="saved-news__header_keywords">
-          "By keywords:{' '}
+          By keywords:{' '}
           <span className="saved-news__header_keywords_span">
             {' '}
             {keywords[0]} {keywords[1] ? `, ${keywords[1]}` : ''}

@@ -27,7 +27,11 @@ function Navigation({ isLoggedIn, handleLoginClick }) {
                 Saved articles
               </button>
             </Link>
-            <button className="nav__current-user">
+            <button
+              className={`nav__current-user ${
+                pathname === '/saved-news' && 'nav__current-user_saved'
+              }`}
+            >
               <p
                 className={`nav__current-user_name ${
                   pathname === '/saved-news' && 'nav__current-user_name_saved'
