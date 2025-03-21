@@ -10,10 +10,12 @@
 
 .main__content {
   display: flex;
+  width: 100%;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   margin: 0;
+  padding: 0;
 }
 
 .main__title {
@@ -35,4 +37,22 @@
   line-height: 24px;
   margin-bottom: 88px;
   margin-top: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .main__title {
+    font-size: 36px;
+    width: 385px;
+    height: 80px;
+    line-height: 40px;
+    margin-bottom: 16px;
+  }
+
+  .main__subtitle {
+    font-size: 18px;
+    line-height: 24px;
+    width: 452px;
+    height: 48px;
+    margin-bottom: 48px;
+  }
 }

@@ -50,3 +50,14 @@
   margin-top: 30px;
 }
 */
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding-right: 40px;
+    margin-right: 0;
+  }
+
+  .header__title {
+    margin-left: 40px;
+  }
+}

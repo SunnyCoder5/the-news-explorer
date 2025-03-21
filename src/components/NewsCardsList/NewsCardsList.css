@@ -34,11 +34,6 @@
     grid-template-columns: repeat(auto-fit, 224px);
     gap: 8px;
   }
-  .news-cards-section__title {
-    font-size: 30px;
-    line-height: 34px;
-    margin-bottom: 32px;
-  }
 }
 
 @media screen and (max-width: 575px) {

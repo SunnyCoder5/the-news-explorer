@@ -15,37 +15,33 @@ function Footer() {
           <NavLink to="/" className="footer__text-link">
             Home
           </NavLink>
-          <a
-            href="https://tripleten.com/"
+          <Link
+            to="https://tripleten.com/"
             className="footer__text-link"
             rel="noopener noreferrer"
+            target="_blank"
           >
             TripleTen
-          </a>
+          </Link>
         </div>
         <div className="footer__icon-links">
-          <a
-            href="https://github.com/SunnyCoder5"
+          <Link
+            to="https://github.com/SunnyCoder5"
             className="footer__icon-link"
             rel="noopener noreferrer"
+            target="_blank"
           >
-            <img
-              src={githubIcon}
-              alt="Github logo"
-              className="footer__social-icon"
-            />
-          </a>
-          <a
-            href="https://www.facebook.com/tripleten.tech/"
+            <button className="footer__icon-gh"></button>
+          </Link>
+
+          <Link
+            to="https://www.facebook.com/tripleten.tech/"
             className="footer__icon-link"
             rel="noopener noreferrer"
+            target="_blank"
           >
-            <img
-              src={facebookIcon}
-              alt="Facebook logo"
-              className="footer__social-icon"
-            />
-          </a>
+            <button className="footer__icon-fb"></button>
+          </Link>
         </div>
       </div>
     </footer>
