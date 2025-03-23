@@ -25,6 +25,8 @@ function App() {
 
   const [activeModal, setActiveModal] = useState('success');
 
+  const [currentPage, setCurrentPage] = useState('home');
+
   const [savedItems, setSavedItems] = useState([]);
 
   const [keyword, setKeyword] = useState('');
@@ -59,12 +61,6 @@ function App() {
 
   const handleLikeItem = (item) => {
     setLikedItems([item, ...likedItems]);
-    item.isLiked = !item.isLiked;
-    if (item.isLiked && !likedItems.includes(item))
-      setLikedItems([item, ...likedItems]);
-    else if (!item.isLiked && likedItems.includes(item)) {
-      handleRemoveLike(item);
-    }
   };
 
   const handleRemoveLike = (card) => {
@@ -78,6 +74,16 @@ function App() {
   function isItemInArray(item, array) {
     return array.some((arrayItem) => item.url === arrayItem.url);
   }
+
+  let location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setCurrentPage('home');
+    } else if (location.pathname === '/saved-news') {
+      setCurrentPage('saved-news');
+    }
+  }, [location]);
 
   useEffect(() => {
     if (!activeModal) return;
@@ -110,86 +116,89 @@ function App() {
   };
 
   return (
-    <div className="page">
-      <div className="page__content">
-        <div
-          className={` ${
-            pathname === '/saved-news'
-              ? 'page__background_saved'
-              : 'page__background'
-          }`}
-        >
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Header
-                    isLoggedIn={isLoggedIn}
-                    handleLoginClick={handleLoginClick}
-                  />
-                  <Main
-                    isLoggedIn={isLoggedIn}
-                    handleLoginClick={handleLoginClick}
-                    handleLikeItem={handleLikeItem}
-                  />
-                </>
-              }
-            />
+    <CurrentPageContext.Provider value={currentPage}>
+      <div className="page">
+        <div className="page__content">
+          <div
+            className={` ${
+              pathname === '/saved-news'
+                ? 'page__background_saved'
+                : 'page__background'
+            }`}
+          >
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Header
+                      isLoggedIn={isLoggedIn}
+                      handleLoginClick={handleLoginClick}
+                    />
+                    <Main
+                      isLoggedIn={isLoggedIn}
+                      handleLoginClick={handleLoginClick}
+                      handleLikeItem={handleLikeItem}
+                    />
+                  </>
+                }
+              />
 
-            <Route
-              path="/saved-news"
-              element={
-                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <SavedNews
-                    isLoggedIn={isLoggedIn}
-                    onLogout={onLogout}
-                    handleRemoveLike={handleRemoveLike}
-                  />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="*"
-              element={
-                isLoggedIn ? (
-                  <Navigate to="/saved-news" replace />
-                ) : (
-                  <Navigate to="/" replace />
-                )
-              }
-            />
-          </Routes>
+              <Route
+                path="/saved-news"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <SavedNews
+                      isLoggedIn={isLoggedIn}
+                      likedItems={likedItems}
+                      onLogout={onLogout}
+                      handleRemoveLike={handleRemoveLike}
+                    />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  isLoggedIn ? (
+                    <Navigate to="/saved-news" replace />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+            </Routes>
 
-          <Footer />
+            <Footer />
+          </div>
+          {activeModal === 'signUp' && (
+            <RegisterModal
+              isOpen={activeModal === 'signUp'}
+              closeActiveModal={closeActiveModal}
+              onSignUp={onSignUp}
+              openLoginModal={handleLoginModal}
+            />
+          )}
+          {activeModal === 'login' && (
+            <LoginModal
+              isOpen={activeModal === 'login'}
+              closeActiveModal={closeActiveModal}
+              onSubmit={handleLogin}
+              openRegisterModal={handleRegisterModal}
+            />
+          )}
+          {activeModal === 'success' && (
+            <InfoModal
+              title="Registration successfully completed!"
+              buttonText="Sign in"
+              onClose={closeActiveModal}
+              handleLoginClick={handleLoginClick}
+              isOpen={activeModal === 'success'}
+            />
+          )}
         </div>
-        {activeModal === 'signUp' && (
-          <RegisterModal
-            isOpen={activeModal === 'signUp'}
-            closeActiveModal={closeActiveModal}
-            onSignUp={onSignUp}
-            openLoginModal={handleLoginModal}
-          />
-        )}
-        {activeModal === 'login' && (
-          <LoginModal
-            isOpen={activeModal === 'login'}
-            closeActiveModal={closeActiveModal}
-            onSubmit={handleLogin}
-            openRegisterModal={handleRegisterModal}
-          />
-        )}
-        {activeModal === 'success' && (
-          <InfoModal
-            title="Registration successfully completed!"
-            buttonText="Sign in"
-            onClose={closeActiveModal}
-            handleLoginClick={handleLoginClick}
-            isOpen={activeModal === 'success'}
-          />
-        )}
       </div>
-    </div>
+    </CurrentPageContext.Provider>
   );
 }
 

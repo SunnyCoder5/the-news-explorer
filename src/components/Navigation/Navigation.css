@@ -26,6 +26,7 @@
   background-color: transparent;
   border-style: none;
   padding: 0;
+  width: 49px;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -36,6 +37,46 @@
 
 .nav__link-saved {
   color: #1a1b22;
+}
+
+.nav__link_saved-news {
+  color: #1a1b22;
+}
+
+.nav__link_current_saved-news {
+  padding-top: 28px;
+  padding-bottom: 25px;
+  border-bottom: 3px solid;
+  color: #1a1b22;
+  border-color: #1a1b22;
+}
+
+.nav__current-user_home {
+  border-color: #fff;
+}
+
+.nav__current-user_name_home {
+  color: #fff;
+}
+
+.nav__link_home {
+  color: #b6bcbf;
+}
+
+.nav__link_current_home {
+  padding-top: 28px;
+  padding-bottom: 25px;
+  border-bottom: 3px solid;
+  color: #fff;
+  border-color: #fff;
+}
+
+.nav__current-user_home {
+  border-color: #fff;
+}
+
+.nav__current-user_name_home {
+  color: #fff;
 }
 
 .nav__current-user {
@@ -113,5 +154,31 @@
   .nav {
     justify-content: flex-end;
     margin: 0;
+  }
+  .nav__signin {
+    padding: 0;
+    width: 152px;
+    font-size: 16px;
+    height: 40px;
+  }
+
+  .nav__current-user {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .nav__current-user_name {
+    font-size: 16px;
+  }
+
+  .nav__current-user_signout {
+    margin-left: 6px;
+    padding: 10px;
+  }
+
+  .nav__current-user_signout_saved {
+    margin-left: 6px;
+    padding: 10px;
   }
 }

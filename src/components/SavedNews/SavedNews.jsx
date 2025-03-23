@@ -6,10 +6,7 @@ import NewsCard from '../NewsCard/NewsCard';
 
 import { useEffect } from 'react';
 
-function SavedNews({ isLoggedIn, onLogout, handleRemoveLike }) {
-  const likedItems = defaultNewsItems.filter((item) => {
-    return item.isLiked === true;
-  });
+function SavedNews({ isLoggedIn, onLogout, handleRemoveLike, likedItems }) {
   const keywords = [];
   likedItems.map((item) => {
     if (!keywords.includes(item.keyword)) keywords.push(item.keyword);

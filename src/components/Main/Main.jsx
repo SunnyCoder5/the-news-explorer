@@ -1,10 +1,13 @@
 import './Main.css';
+import { useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import About from '../About/About';
 import SearchResults from '../SearchResults/SearchResults';
 import NothingFound from '../NothingFound/NothingFound';
 
-function Main({ handleSaveItem, isLoggedIn, h }) {
+function Main({ handleLoginClick, isLoggedIn, handleLikeItem }) {
+  const [searchState, setSearchState] = useState('results');
+
   return (
     <main className="main">
       <div className="main__content">
@@ -14,10 +17,15 @@ function Main({ handleSaveItem, isLoggedIn, h }) {
           account.
         </p>
         <SearchForm />
-        <SearchResults
-          handleSaveItem={handleSaveItem}
-          isLoggedIn={isLoggedIn}
-        />
+        {searchState === 'searching' && <Preloader />}
+        {searchState === 'nothingFound' && <NothingFound />}{' '}
+        {searchState === 'results' && (
+          <SearchResults
+            handleLoginClick={handleLoginClick}
+            isLoggedIn={isLoggedIn}
+            handleLikeItem={handleLikeItem}
+          />
+        )}
         <About />
       </div>
     </main>

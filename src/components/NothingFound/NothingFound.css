@@ -3,7 +3,7 @@
   min-height: 224px;
   padding-top: 70px;
   padding-bottom: 80px;
-  width: 100%;
+  max-width: 100%;
 }
 
 .nothing-found__image {
