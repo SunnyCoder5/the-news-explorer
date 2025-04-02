@@ -7,28 +7,35 @@ const LoginModal = ({
   isOpen,
   onLogIn,
   openRegisterModal,
-  closeActiveModal,
+  onClose,
+  buttonClass = 'modal__form-button',
 }) => {
-  const [data, setData] = useState({
-    email: '',
-    password: '',
-  });
-
-  useEffect(() => {
-    setData({ email: '', password: '' });
-  }, [isOpen]);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogIn(data);
+    console.log('Submitting registration form with:', {
+      email,
+      password,
+    });
+    onLogIn({ email, password });
   };
+
+  useEffect(() => {
+    setIsButtonActive(email.trim() !== '' && password.trim() !== '');
+  }, [email, password]);
 
   return (
     <ModalWithForm
       title="Sign In"
       isOpen={isOpen}
-      onClose={closeActiveModal}
+      onClose={onClose}
       onSubmit={handleSubmit}
+      buttonClass={`modal__form-button ${
+        isButtonActive ? 'modal__form-button_active' : ''
+      }`}
     >
       <label className="modal__label">
         Email{' '}
@@ -37,11 +44,9 @@ const LoginModal = ({
           className="modal__input"
           id="user-email"
           name="email"
-          placeholder="Email"
-          value={data.email}
-          onChange={(e) =>
-            setData((prevData) => ({ ...prevData, email: e.target.value }))
-          }
+          placeholder="Enter email"
+          value={email}
+          onChange={(e) => setEmail((prevData) => e.target.value)}
           required
         />
       </label>
@@ -52,16 +57,19 @@ const LoginModal = ({
           className="modal__input modal__input-password"
           id="user-password"
           name="password"
-          placeholder="Password"
-          value={data.password}
-          onChange={(e) =>
-            setData((prevData) => ({ ...prevData, password: e.target.value }))
-          }
+          placeholder="Enter password"
+          value={password}
+          onChange={(e) => setPassword((prevData) => e.target.value)}
           required
         />
       </label>
       <div className="modal__buttons-wrapper">
-        <button type="submit" className="modal__form-button">
+        <button
+          type="submit"
+          className={`${buttonClass} ${
+            isButtonActive ? 'modal__form-button_filled' : ''
+          }`}
+        >
           Sign in
         </button>
         <button

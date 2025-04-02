@@ -67,3 +67,19 @@ export const defaultNewsItems = [
     keyword: 'Photography',
   },
 ];
+
+export const APIkey = 'f477c0fbbd2c469aa31d0662334eaaa3';
+
+const createDateFormat = (date) => {
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  return `${year}-${month}-${day}`;
+};
+
+const today = new Date();
+const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+export const from = createDateFormat(sevenDaysAgo);
+export const to = createDateFormat(today);
+
+export const pageSize = 100;

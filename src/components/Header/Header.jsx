@@ -2,7 +2,14 @@ import './Header.css';
 import Navigation from '../Navigation/Navigation';
 import { Routes, Route, Link, useLocation, NavLink } from 'react-router-dom';
 
-function Header({ isLoggedIn, handleLoginClick }) {
+function Header({
+  isLoggedIn,
+  handleLoginClick,
+  handleMenuClick,
+  isOpen,
+  activeModal,
+  onLogout,
+}) {
   const { pathname } = useLocation();
 
   return (
@@ -16,7 +23,13 @@ function Header({ isLoggedIn, handleLoginClick }) {
           NewsExplorer
         </p>
       </NavLink>
-      <Navigation isLoggedIn={isLoggedIn} handleLoginClick={handleLoginClick} />
+      <Navigation
+        isLoggedIn={isLoggedIn}
+        handleLoginClick={handleLoginClick}
+        handleMenuClick={handleMenuClick}
+        isOpen={isOpen}
+        onLogout={onLogout}
+      />
     </header>
   );
 }

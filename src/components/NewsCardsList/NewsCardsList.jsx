@@ -1,31 +1,38 @@
 import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 import './NewsCardsList.css';
-import { defaultNewsItems } from '../../utils/constants';
 
 function NewsCardsList({
   handleLoginClick,
   numResults,
-  handleLikeItem,
   handleSaveItem,
   isLoggedIn,
-  handleRemoveLike,
+  handleRemoveSave,
+  searchResults,
+  savedItems,
 }) {
+  console.log('First search result:', searchResults[0]);
   return (
     <div className="news-cards-section">
+      <div className="news-cards-section__title">Search results</div>
       <ul className="news-cards__list">
-        {defaultNewsItems
+        {searchResults
           .map((item) => {
+            savedItems.forEach((arrayItem) => {
+              if (item.url === arrayItem.url) {
+                item._id = arrayItem._id;
+                item.isSaved = true;
+              }
+            });
             return (
               <NewsCard
-                key={item._id}
+                key={item.url}
                 item={item}
                 handleLoginClick={handleLoginClick}
-                handleLikeItem={handleLikeItem}
-                defaultNewsItems={defaultNewsItems}
                 handleSaveItem={handleSaveItem}
                 isLoggedIn={isLoggedIn}
-                handleRemoveLike={handleRemoveLike}
+                searchResults={searchResults}
+                handleRemoveSave={handleRemoveSave}
               />
             );
           })

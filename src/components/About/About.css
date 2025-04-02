@@ -1,7 +1,7 @@
 .about {
   display: flex;
   gap: 56px;
-  margin: 96px auto 0;
+  margin: 80px 0;
   max-width: 100%;
   background-color: #fff;
 }
@@ -11,12 +11,14 @@
   width: 100%;
   height: 464px;
   border-radius: 50%;
-  margin: 0 0 80px 104px;
+  margin: 0 56px 80px 0;
   object-fit: cover;
 }
 
 .about__content {
-  padding: 80px 216px 80px 0;
+  margin: 51px auto 80px 0;
+  padding: 0;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -49,7 +51,7 @@
   .about {
     flex-direction: row;
     padding: 0;
-    margin: 40px;
+    margin: 40px auto 0;
     gap: 0;
   }
 
@@ -75,14 +77,22 @@
   font-size: 30px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 575px) {
+  .about {
+    flex-direction: column;
+    margin: 0;
+    align-items: center;
+  }
+
   .about__image {
-    margin: 32px auto 0;
+    margin: 32px 16px 0;
     height: 272px;
     width: 272px;
   }
 
   .about__content {
-    padding: 24px 0 128px 0;
+    padding: 24px 16px 0;
+    margin-bottom: 80px;
+    width: 288px;
   }
 }

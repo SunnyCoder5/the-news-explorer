@@ -1,44 +1,40 @@
 import './NewsCard.css';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { defaultNewsItems } from '../../utils/constants';
 
 import { CurrentPageContext } from '../../contexts/CurrentPageContext';
-
-import image1 from '../../assets/image_01.png';
-import image2 from '../../assets/image_02.png';
-import image3 from '../../assets/image_03.png';
-import image4 from '../../assets/image_04.png';
-import image5 from '../../assets/image_05.png';
 
 function NewsCard({
   handleLoginClick,
   isLoggedIn,
-  defaultNewsItems,
   item,
-  handleLikeItem,
-  handleRemoveLike,
+  handleSaveItem,
+  handleRemoveSave,
 }) {
+  //console.log('News item data:', JSON.stringify(item, null, 2));
+
   const { pathname } = useLocation();
 
-  const card = item;
-  const images = [image1, image2, image3, image4, image5];
-
   const currentPage = useContext(CurrentPageContext);
-  const [isClicked, setIsClicked] = useState(false);
-
-  const onLike = () => {
-    handleLikeItem(item);
-    item.isLiked = !item.isLiked;
-  };
+  //const fallbackImage = 'https://placehold.co/600x400?text=No+Image';
 
   const onSave = () => {
     handleSaveItem(item);
   };
 
   const onRemove = () => {
-    handleRemoveLike(item);
-    item.isLiked = false;
+    handleRemoveSave(item);
+    item.isSaved = false;
+  };
+
+  const fixDate = (iso) => {
+    if (!iso) return '';
+    const split = iso.split(/\D+/);
+    const parsed = new Date(Date.UTC(split[0], --split[1], split[2]));
+    const month = parsed.toLocaleString('default', { month: 'long' });
+    const day = parseInt(split[2]);
+    const year = split[0];
+    return `${month} ${day}, ${year}`;
   };
 
   return (
@@ -48,11 +44,11 @@ function NewsCard({
           pathname === '/' ? (
             <button
               className={`${
-                item.isLiked
+                item.isSaved
                   ? 'card__save-btn card__save-btn_checked'
                   : 'card__save-btn card__save-btn_unchecked'
               } `}
-              onClick={onLike}
+              onClick={onSave}
             ></button>
           ) : (
             <>
@@ -77,14 +73,18 @@ function NewsCard({
           </>
         )}
       </div>
-      <img className="card__image" src={images[item._id]} alt={item.title} />
+      <img
+        className="card__image"
+        src={item.urlToImage /*|| fallbackImage*/}
+        alt={item.title}
+      />
       <div className="card__content">
         <div className="card__text">
-          <p className="card__date">{item.publishedAt}</p>
+          <p className="card__date">{fixDate(item.publishedAt)}</p>
           <p className="card__title">{item.title}</p>
-          <p className="card__preview">{item.content}</p>
+          <p className="card__preview">{item.description}</p>
         </div>
-        <p className="card__source">{item.source.name.toUpperCase()}</p>
+        <p className="card__source">{item.source?.name?.toUpperCase() || ''}</p>
       </div>
     </li>
   );

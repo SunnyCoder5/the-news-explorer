@@ -43,7 +43,24 @@
 }
 
 @media screen and (max-width: 768px) {
+  .saved-news__header {
+    padding: 0;
+  }
+
   .saved-news__header_text {
     padding-left: 40px;
+  }
+
+  .saved-news__header_info {
+    font-size: 30px;
+    width: 335px;
+    line-height: 34px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .saved-news__header_text {
+    padding-left: 0;
+    margin-left: calc((100% - 288px) / 2);
   }
 }

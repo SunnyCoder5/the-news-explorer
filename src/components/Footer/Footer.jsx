@@ -1,8 +1,5 @@
 import './Footer.css';
-import { Routes, Route, Link, useLocation, NavLink } from 'react-router-dom';
-
-import githubIcon from '../../assets/github.svg';
-import facebookIcon from '../../assets/fb.svg';
+import { Link, NavLink } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -12,7 +9,11 @@ function Footer() {
       </p>
       <div className="footer__links">
         <div className="footer__text-links">
-          <NavLink to="/" className="footer__text-link">
+          <NavLink
+            to="/"
+            onClick={() => window.scrollTo(0, 0)}
+            className="footer__text-link"
+          >
             Home
           </NavLink>
           <Link

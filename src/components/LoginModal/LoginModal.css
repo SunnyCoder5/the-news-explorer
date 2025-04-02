@@ -1,8 +1,9 @@
 .modal__form-button {
-  background-color: #2f71e5;
+  background-color: #e6e8eb;
   width: 360px;
   height: 64px;
   border-radius: 100px;
+  color: #b6bcbf;
 }
 
 .modal__buttons-wrapper {

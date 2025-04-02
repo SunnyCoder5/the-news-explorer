@@ -62,8 +62,8 @@
   color: #ffffff;
   border: none;
   position: absolute;
-  bottom: calc(100% + 5px);
-  left: calc(100% + 5px);
+  top: -40px;
+  right: -40px;
   width: 40px;
   height: 40px;
   padding: 0;
@@ -108,16 +108,19 @@
 input::-webkit-input-placeholder {
   color: #00000080;
   font-size: 16px;
+  opacity: 20%;
 }
 
 input::-moz-placeholder {
   color: #00000080;
   font-size: 16px;
+  opacity: 20%;
 }
 
 input::-ms-input-placeholder {
   color: #00000080;
   font-size: 16px;
+  opacity: 20%;
 }
 
 .modal__radio-buttons {
@@ -143,23 +146,41 @@ input::-ms-input-placeholder {
 }
 
 .modal__form-button {
-  width: 124px;
-  height: 36px;
-  background-color: #0000004d;
-  color: #ffffff;
+  background-color: #e6e8eb;
+  width: 360px;
+  height: 64px;
+  border-radius: 100px;
+  color: #b6bcbf;
   margin-top: 32px;
   padding: 0;
   border: none;
-  border-radius: 4px;
+}
+
+.modal__buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.modal__form-button_filled {
+  background-color: #2f71e5;
+  color: white;
 }
 
 .modal__or-signup-button {
   border: none;
   background: transparent;
-  color: #2f71e5;
+  color: black;
   font-size: 14px;
   cursor: pointer;
   margin-left: 5px;
+}
+
+.modal__or-signup-button_span {
+  color: #2f71e5;
 }
 
 .modal__or-login-button {
@@ -182,39 +203,41 @@ input::-ms-input-placeholder {
   accent-color: #000000;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 575px) {
   .modal {
-    max-width: 420px;
-    width: 100%;
+    background-color: transparent;
   }
-  .modal__title {
-    margin-bottom: 37px;
-  }
-
-  .modal__form {
-    margin-top: 0;
-  }
-
   .modal__content {
-    margin-top: 24px;
-    margin: auto 10px 0;
-    max-width: 375px;
-    width: 100%;
-    height: 455px;
-    padding: 0;
-  }
-
-  .modal__label:first-of-type {
-    margin-top: 0;
+    max-width: 100%;
+    height: 100vh;
+    padding: 16px;
+    box-sizing: border-box;
+    padding-bottom: 150px;
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    right: 0;
+    left: 0;
   }
 
   .modal__form-button {
-    width: 343px;
-
-    margin-top: 30px;
-    margin-bottom: 32px;
-    height: 44px;
-
     align-self: center;
+  }
+
+  .modal__close {
+    top: -40px;
+    right: 16px;
+    height: 24px;
+    width: 24px;
+  }
+
+  .modal__title {
+    line-height: 28px;
+    margin-bottom: 11px;
+  }
+
+  .modal__label {
+    margin-top: 7px;
+    margin-bottom: 9px;
   }
 }

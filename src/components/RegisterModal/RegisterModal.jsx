@@ -3,43 +3,42 @@ import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import './RegisterModal.css';
 
 const RegisterModal = ({
-  closeModal,
   isOpen,
   buttonClass = 'modal__form-button',
   openLoginModal,
   onSignUp,
-  closeActiveModal,
+  onClose,
 }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [avatar, setAvatar] = useState('');
   const [isButtonActive, setIsButtonActive] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignUp({ email, password, name, avatar });
+    console.log('Submitting registration form with:', {
+      email,
+      password,
+      name,
+    });
+    onSignUp({ email, password, name });
   };
 
   useEffect(() => {
     setIsButtonActive(
-      email.trim() !== '' &&
-        password.trim() !== '' &&
-        name.trim() !== '' &&
-        avatar.trim() !== ''
+      email.trim() !== '' && password.trim() !== '' && name.trim() !== ''
     );
-  }, [email, password, name, avatar]);
+  }, [email, password, name]);
 
   return (
     <ModalWithForm
       title="Sign up"
-      onClose={closeActiveModal}
+      onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
       buttonClass={`modal__form-button ${
         isButtonActive ? 'modal__form-button_active' : ''
       }`}
-      handleCloseModal={closeModal}
     >
       <label className="modal__label">
         Email*{' '}
@@ -47,7 +46,7 @@ const RegisterModal = ({
           type="email"
           className="modal__input"
           id="email"
-          placeholder="Email"
+          placeholder="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -59,20 +58,20 @@ const RegisterModal = ({
           type="password"
           className="modal__input"
           id="password"
-          placeholder="Password"
+          placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
       <label className="modal__label">
-        Name*{''}
+        Username*{''}
         <input
           type="text"
           className="modal__input"
           id="registerName"
           name="name"
-          placeholder="Name"
+          placeholder="Enter your username"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required

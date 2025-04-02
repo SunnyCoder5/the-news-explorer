@@ -1,18 +1,39 @@
 import './SearchForm.css';
+import { useState } from 'react';
 
-function SearchForm() {
+function SearchForm({ onSearch }) {
+  const [topic, setTopic] = useState('');
+  const [formError, setFormError] = useState('');
+
+  const handleTopicChange = (e) => {
+    setTopic(e.target.value);
+    setFormError(''); // Clear error when user types
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!topic.trim()) {
+      setFormError('Please enter a keyword');
+      return;
+    }
+    onSearch(topic);
+  };
+
   return (
-    <form className="search-form">
-      <label className="search-form__label">
+    <form className="search-form" onSubmit={handleSearch}>
+      <div className="search-form_search-bar">
         <input
           type="text"
           placeholder="Enter topic"
           className="search-form__input"
+          onChange={handleTopicChange}
+          value={topic}
         />
-      </label>
-      <button type="submit" className="search-form__submit-button">
-        Search
-      </button>
+        <button type="submit" className="search-form__submit-button">
+          Search
+        </button>
+      </div>
+      {formError && <p className="search-form_error">{formError}</p>}
     </form>
   );
 }

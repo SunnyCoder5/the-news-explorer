@@ -13,38 +13,44 @@ import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import SavedNews from '../SavedNews/SavedNews';
-import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
-import { defaultNewsItems } from '../../utils/constants';
+//import { defaultNewsItems } from '../../utils/constants';
 import { CurrentPageContext } from '../../contexts/CurrentPageContext.js';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import InfoModal from '../InfoModal/InfoModal';
+import MobileMenu from '../MobileMenu/MobileMenu';
+import { getSavedNews } from '../../utils/api.js';
+import { getNews } from '../../utils/NewsApi.js';
+import { saveItem, deleteItem } from '../../utils/api.js';
+import { authorize, register, checkToken } from '../../utils/auth.js';
+
+import * as auth from '../../utils/auth.js';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [activeModal, setActiveModal] = useState('success');
+  const [activeModal, setActiveModal] = useState('');
 
   const [currentPage, setCurrentPage] = useState('home');
+  const [currentUser, setCurrentUser] = useState({});
 
   const [savedItems, setSavedItems] = useState([]);
 
+  const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [keyword, setKeyword] = useState('');
 
-  const [likedItems, setLikedItems] = useState(
-    defaultNewsItems.filter((item) => {
-      return item.isLiked === true;
-    })
-  );
+  const [searchError, setSearchError] = useState(false);
+  const [serverError, setServerError] = useState({
+    loginError: '',
+    regError: '',
+  });
 
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   const handleLoginClick = () => {
     setActiveModal('login');
-  };
-
-  const handleLogin = ({ email, password }) => {
-    console.log(activeModal);
   };
 
   const closeActiveModal = () => {
@@ -55,35 +61,69 @@ function App() {
     setActiveModal('signUp');
   };
 
-  const handleLoginModal = () => {
-    setActiveModal('login');
+  const handleSaveItem = (item) => {
+    item.isSaved = !item.isSaved;
+    item.keyword = keyword;
+    isItemInArray(item, savedItems)
+      ? console.log('Item already saved')
+      : saveItem(item)
+          .then((card) => {
+            item._id = card._id;
+            setSavedItems([item, ...savedItems]);
+            console.log('Article saved');
+          })
+          .catch((err) => {
+            console.error('Failed to save article', err);
+          });
+    if (item.isSaved && !savedItems.includes(item)) {
+      setSavedItems([item, ...savedItems]);
+    }
   };
 
-  const handleLikeItem = (item) => {
-    setLikedItems([item, ...likedItems]);
-  };
-
-  const handleRemoveLike = (card) => {
-    setLikedItems(
-      likedItems.filter((item) => {
-        return item !== card;
+  const handleRemoveSave = (item) => {
+    deleteItem(item)
+      .then(() => {
+        setSavedItems(
+          savedItems.filter((card) => {
+            return card.url !== item.url;
+          })
+        );
       })
-    );
+      .catch((err) => {
+        console.error('Failed to unsave article', err);
+      });
+    item.isSaved = false;
   };
+
+  const handleMenuClick = () => {
+    setActiveModal('menu');
+  };
+
+  const onSearch = (topic) => {
+    setKeyword(topic);
+    setIsLoading(true);
+  };
+
+  useEffect(() => {
+    if (!keyword) {
+      setIsLoading(false);
+      return;
+    }
+    getNews(keyword)
+      .then((res) => {
+        setSearchResults(res.articles);
+        console.log(searchResults);
+      })
+      .catch((err) => {
+        console.error('Failed to perform search', err);
+        setSearchError(true);
+      })
+      .finally(() => setIsLoading(false));
+  }, [isLoading]);
 
   function isItemInArray(item, array) {
     return array.some((arrayItem) => item.url === arrayItem.url);
   }
-
-  let location = useLocation();
-
-  useEffect(() => {
-    if (location.pathname === '/') {
-      setCurrentPage('home');
-    } else if (location.pathname === '/saved-news') {
-      setCurrentPage('saved-news');
-    }
-  }, [location]);
 
   useEffect(() => {
     if (!activeModal) return;
@@ -98,107 +138,197 @@ function App() {
     };
   }, [activeModal]);
 
+  let location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setCurrentPage('home');
+    } else if (location.pathname === '/saved-news') {
+      setCurrentPage('saved-news');
+    }
+  }, [location]);
+
   const { pathname } = useLocation();
 
   const onLogout = () => {
+    localStorage.removeItem('jwt');
+    navigate('/');
     setIsLoggedIn(false);
   };
 
-  const onSignUp = ({ email, password, name, avatar }) => {
-    const userProfile = { email, password, name, avatar };
-    signUp(userProfile)
+  const onLogIn = ({ email, password }) => {
+    if (!email || !password) {
+      return;
+    }
+    authorize({ email, password })
       .then((res) => {
-        onLogIn({ email, password });
+        if (res.token) {
+          setIsLoggedIn(true);
+          localStorage.setItem('jwt', res.token);
+          setCurrentUser({ username: res.username, _id: res._id });
+          closeActiveModal();
+        }
       })
-      .catch((error) => {
-        console.error('error at signing up', error);
+      .catch((err) => {
+        setServerError({
+          ...serverError,
+          loginError: 'Incorrect email or password',
+        });
+        console.error('Failed to login', err);
       });
   };
 
+  const onSignUp = ({ email, password, name }) => {
+    console.log('Starting registration...');
+    register({ email, password, name })
+      .then((res) => {
+        console.log('Registration response:', res);
+        if (res.data) {
+          console.log('Setting modal to success');
+          setActiveModal('success');
+        }
+      })
+      .catch((err) => {
+        setServerError({
+          ...serverError,
+          regError: 'A user with this email already exists',
+        });
+        console.error('Failed to register', err);
+      });
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (!token) {
+      return;
+    }
+    auth
+      .checkToken(token)
+      .then((res) => {
+        setIsLoggedIn(true);
+        setCurrentUser({
+          name: res.data.name,
+          _id: res.data._id,
+        });
+        getSavedNews(token)
+          .then((items) => {
+            setSavedItems(items.reverse());
+          })
+          .catch((err) => {
+            console.error('Failed to receive saved news items');
+          });
+      })
+      .catch((err) => {
+        console.error('Authorization failed', err);
+      });
+  }, [isLoggedIn]);
+
   return (
-    <CurrentPageContext.Provider value={currentPage}>
-      <div className="page">
-        <div className="page__content">
-          <div
-            className={` ${
-              pathname === '/saved-news'
-                ? 'page__background_saved'
-                : 'page__background'
-            }`}
-          >
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <Header
-                      isLoggedIn={isLoggedIn}
-                      handleLoginClick={handleLoginClick}
-                    />
-                    <Main
-                      isLoggedIn={isLoggedIn}
-                      handleLoginClick={handleLoginClick}
-                      handleLikeItem={handleLikeItem}
-                    />
-                  </>
-                }
-              />
+    <CurrentUserContext.Provider value={currentUser}>
+      <CurrentPageContext.Provider value={currentPage}>
+        <div className="page">
+          <div className="page__content">
+            <div
+              className={` ${
+                pathname === '/saved-news'
+                  ? 'page__background_saved'
+                  : 'page__background'
+              }`}
+            >
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <Header
+                        isLoggedIn={isLoggedIn}
+                        handleLoginClick={handleLoginClick}
+                        handleMenuClick={handleMenuClick}
+                        isOpen={activeModal !== ''}
+                        onLogout={onLogout}
+                      />
+                      <Main
+                        handleLoginClick={handleLoginClick}
+                        handleSaveItem={handleSaveItem}
+                        searchResults={searchResults}
+                        keyword={keyword}
+                        isLoading={isLoading}
+                        onSearch={onSearch}
+                        searchError={searchError}
+                        isLoggedIn={isLoggedIn}
+                        savedItems={savedItems}
+                      />
+                    </>
+                  }
+                />
 
-              <Route
-                path="/saved-news"
-                element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                    <SavedNews
-                      isLoggedIn={isLoggedIn}
-                      likedItems={likedItems}
-                      onLogout={onLogout}
-                      handleRemoveLike={handleRemoveLike}
-                    />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="*"
-                element={
-                  isLoggedIn ? (
-                    <Navigate to="/saved-news" replace />
-                  ) : (
-                    <Navigate to="/" replace />
-                  )
-                }
-              />
-            </Routes>
+                <Route
+                  path="/saved-news"
+                  element={
+                    <ProtectedRoute isLoggedIn={isLoggedIn}>
+                      <SavedNews
+                        isLoggedIn={isLoggedIn}
+                        savedItems={savedItems}
+                        onLogout={onLogout}
+                        handleRemoveSave={handleRemoveSave}
+                        handleMenuClick={handleMenuClick}
+                        searchResults={searchResults}
+                      />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="*"
+                  element={
+                    isLoggedIn ? (
+                      <Navigate to="/saved-news" replace />
+                    ) : (
+                      <Navigate to="/" replace />
+                    )
+                  }
+                />
+              </Routes>
 
-            <Footer />
+              <Footer />
+            </div>
+            {activeModal === 'signUp' && (
+              <RegisterModal
+                isOpen={activeModal === 'signUp'}
+                onClose={closeActiveModal}
+                onSignUp={onSignUp}
+                openLoginModal={handleLoginClick}
+              />
+            )}
+            {activeModal === 'login' && (
+              <LoginModal
+                isOpen={activeModal === 'login'}
+                onClose={closeActiveModal}
+                openRegisterModal={handleRegisterModal}
+                onLogIn={onLogIn}
+              />
+            )}
+            {activeModal === 'success' && (
+              <InfoModal
+                title="Registration successfully completed!"
+                buttonText="Sign in"
+                onClose={closeActiveModal}
+                handleLoginClick={handleLoginClick}
+                isOpen={activeModal === 'success'}
+              />
+            )}
           </div>
-          {activeModal === 'signUp' && (
-            <RegisterModal
-              isOpen={activeModal === 'signUp'}
-              closeActiveModal={closeActiveModal}
-              onSignUp={onSignUp}
-              openLoginModal={handleLoginModal}
-            />
-          )}
-          {activeModal === 'login' && (
-            <LoginModal
-              isOpen={activeModal === 'login'}
-              closeActiveModal={closeActiveModal}
-              onSubmit={handleLogin}
-              openRegisterModal={handleRegisterModal}
-            />
-          )}
-          {activeModal === 'success' && (
-            <InfoModal
-              title="Registration successfully completed!"
-              buttonText="Sign in"
+          {activeModal === 'menu' && (
+            <MobileMenu
+              isOpen={activeModal === 'menu'}
               onClose={closeActiveModal}
               handleLoginClick={handleLoginClick}
-              isOpen={activeModal === 'success'}
+              onLogout={onLogout}
+              isLoggedIn={isLoggedIn}
             />
           )}
         </div>
-      </div>
-    </CurrentPageContext.Provider>
+      </CurrentPageContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 

@@ -17,7 +17,6 @@
   line-height: 46px;
   margin: 0 0 64px 102px;
   color: #1a1b22;
-
   text-align: start;
 }
 
@@ -46,14 +45,26 @@
 
 @media screen and (max-width: 768px) {
   .search-results {
-    padding: 40px 0%;
+    margin: 40px 0 0;
+    padding-bottom: 16px;
   }
   .search-results__title {
-    max-width: 692px;
-    width: 100%;
-    padding-left: 0px;
+    padding-left: 0;
     font-size: 30px;
     line-height: 34px;
     margin-bottom: 32px;
+    margin-left: 40px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .search-results {
+    padding: 40px 0 16px;
+  }
+
+  .search-results__load-more {
+    margin: 32px 16px 24px;
+    padding: 0;
+    height: 56px;
   }
 }

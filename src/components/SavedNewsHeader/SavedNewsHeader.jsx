@@ -1,13 +1,13 @@
 import Navigation from '../Navigation/Navigation';
 import './SavedNewsHeader.css';
 
-function SavedNewsHeader({ totalLiked, keywords }) {
+function SavedNewsHeader({ totalSaved, keywords }) {
   return (
     <header className="saved-news__header">
       <div className="saved-news__header_text">
         <p className="saved-news__header_subtitle">Saved articles</p>
         <p className="saved-news__header_info">
-          Mariia, you have {totalLiked} saved articles
+          Mariia, you have {totalSaved} saved articles
         </p>
         <p className="saved-news__header_keywords">
           By keywords:{' '}
