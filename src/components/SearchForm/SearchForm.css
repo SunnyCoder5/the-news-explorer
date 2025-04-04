@@ -10,7 +10,7 @@
   margin-bottom: 80px;
 }
 
-.search-form_search-bar {
+.search-form__search-bar {
   position: relative;
   display: flex;
 }

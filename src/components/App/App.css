@@ -10,13 +10,13 @@
 .page__content {
   display: flex;
   width: 100%;
-  max-width: 100%;
   margin: 0;
   padding: 0;
   flex-direction: column;
   background-size: cover;
   position: relative;
   box-sizing: border-box;
+  align-items: center;
 }
 
 .page__background {
@@ -26,22 +26,22 @@
   background-size: cover;
   box-sizing: border-box;
   margin: 0;
+  width: 100%;
   padding: 0;
-  max-width: 100%;
   height: 576px;
 }
 
 .page__background_saved {
   background-color: #f5f6f7;
-  background-size: cover;
-  width: 100%;
-  height: 576px;
 }
 
 @media screen and (max-width: 768px) {
   .page__content {
-    max-width: 100vw;
-    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .page__background {
+    height: 400px;
   }
 }
 

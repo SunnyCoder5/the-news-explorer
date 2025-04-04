@@ -60,7 +60,7 @@
 
 @media screen and (max-width: 575px) {
   .saved-news__header_text {
-    padding-left: 0;
+    padding-left: 16px;
     margin-left: calc((100% - 288px) / 2);
   }
 }

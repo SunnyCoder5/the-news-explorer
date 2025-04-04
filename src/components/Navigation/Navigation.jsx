@@ -1,6 +1,7 @@
 import './Navigation.css';
 import { Link, useLocation } from 'react-router-dom';
 import { CurrentPageContext } from '../../contexts/CurrentPageContext';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useContext } from 'react';
 
 function Navigation({
@@ -12,11 +13,12 @@ function Navigation({
 }) {
   const { pathname } = useLocation();
   const currentPage = useContext(CurrentPageContext);
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <nav className={`nav nav_${currentPage} nav__modal_${isOpen}`}>
-      <div className="nav__links ">
-        <Link to="/">
+      <div className="nav__links">
+        <Link to="/" className="nav-link">
           <button
             className={`nav__link nav__link_to-home ${
               pathname === '/'
@@ -29,7 +31,7 @@ function Navigation({
         </Link>
         {isLoggedIn ? (
           <div className="nav__links">
-            <Link to="/saved-news">
+            <Link to="/saved-news" className="nav-link">
               <button
                 className={`nav__link nav__link_to-save ${
                   pathname === '/saved-news' && 'nav__link-saved'
@@ -49,7 +51,7 @@ function Navigation({
                   pathname === '/saved-news' && 'nav__current-user_name_saved'
                 }`}
               >
-                Elise
+                {currentUser.name}
               </p>
               <div
                 className={`nav__link ${

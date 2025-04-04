@@ -229,7 +229,7 @@ function App() {
         <div className="page">
           <div className="page__content">
             <div
-              className={` ${
+              className={`page__background ${
                 pathname === '/saved-news'
                   ? 'page__background_saved'
                   : 'page__background'

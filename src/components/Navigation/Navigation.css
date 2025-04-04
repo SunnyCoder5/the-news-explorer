@@ -18,6 +18,7 @@
   background-color: transparent;
   border-style: none;
   padding: 0;
+  height: 80px;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -36,8 +37,6 @@
 }
 
 .nav__link_current_saved-news {
-  padding-top: 28px;
-  padding-bottom: 25px;
   border: none;
   color: #1a1b22;
 }
@@ -100,6 +99,7 @@
   background-image: url(../../assets/sign-out.svg);
   background-repeat: no-repeat;
   background-size: cover;
+  height: 3px;
   padding: 12px;
   margin-left: 16px;
   border-style: none;
@@ -112,6 +112,7 @@
   background-size: cover;
   padding: 12px;
   margin-left: 16px;
+  height: 3px;
   border-style: none;
 }
 
@@ -163,6 +164,11 @@
     margin-top: 13px;
     margin-bottom: 13px;
   }
+
+  .nav__link {
+    height: 66px;
+  }
+
   .nav__signin {
     padding: 0;
     width: 152px;
@@ -183,11 +189,13 @@
   .nav__current-user_signout {
     margin-left: 6px;
     margin: 5px;
+    height: 3px;
   }
 
   .nav__current-user_signout_saved {
     margin-left: 0px;
     margin-right: 6px;
+    height: 3px;
   }
 
   .nav__link_to-save {
@@ -199,7 +207,6 @@
     width: 160px;
     padding-top: 21px;
     padding-bottom: 21px;
-    border-bottom: 3px solid;
   }
 
   .nav__link_current_home {
