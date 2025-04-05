@@ -13,7 +13,7 @@
   align-self: center;
 }
 
-.header_saved {
+.header_page_saved {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -29,7 +29,7 @@
   color: white;
   margin-top: 30px;
 }
-.header__title_saved {
+.header__title_page_saved {
   font-family: 'Roboto-Slab-Bold', sans-serif;
   font-weight: 700;
   font-size: 20px;

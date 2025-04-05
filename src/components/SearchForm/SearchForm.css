@@ -59,6 +59,10 @@
   background-color: #1a5ed3cc;
 }
 
+.search-form__submit-button:active {
+  background-color: #2a65cc;
+}
+
 @media screen and (max-width: 768px) {
   .search-form {
     width: 452px;

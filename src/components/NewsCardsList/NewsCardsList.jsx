@@ -13,8 +13,8 @@ function NewsCardsList({
 }) {
   console.log('First search result:', searchResults[0]);
   return (
-    <div className="news-cards-section">
-      <div className="news-cards-section__title">Search results</div>
+    <section className="news-cards-section">
+      <h2 className="news-cards-section__title">Search results</h2>
       <ul className="news-cards__list">
         {searchResults
           .map((item) => {
@@ -38,7 +38,7 @@ function NewsCardsList({
           })
           .slice(0, numResults)}
       </ul>
-    </div>
+    </section>
   );
 }
 

@@ -3,12 +3,12 @@ import { Link, NavLink } from 'react-router-dom';
 
 function Footer() {
   return (
-    <div className="footer-container">
-      <footer className="footer">
+    <div className="footer">
+      <footer className="footer__container">
         <p className="footer__copyright">
           © 2025 Supersite, Powered by News API
         </p>
-        <div className="footer__links">
+        <nav className="footer__links">
           <div className="footer__text-links">
             <NavLink
               to="/"
@@ -45,7 +45,7 @@ function Footer() {
               <button className="footer__icon-fb"></button>
             </Link>
           </div>
-        </div>
+        </nav>
       </footer>
     </div>
   );

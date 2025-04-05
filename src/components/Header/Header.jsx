@@ -14,11 +14,11 @@ function Header({
 
   return (
     <header
-      className={`header ${pathname === '/saved-news' && 'header_saved'}`}
+      className={`header ${pathname === '/saved-news' && 'header_page_saved'}`}
     >
       <NavLink to="/" className="header__title-link">
         <p
-          className={`header__title ${pathname === '/saved-news' && 'header__title_saved'}`}
+          className={`header__title ${pathname === '/saved-news' && 'header__title_page_saved'}`}
         >
           NewsExplorer
         </p>

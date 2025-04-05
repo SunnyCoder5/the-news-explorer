@@ -7,7 +7,7 @@ function SavedNewsHeader({ totalSaved, keywords, handleMenuClick, isOpen }) {
   const currentUser = useContext(CurrentUserContext);
   const userName = currentUser?.name;
   return (
-    <header className="saved-news__header">
+    <section className="saved-news__header">
       <div className="saved-news__header_text">
         <p className="saved-news__header_subtitle">Saved articles</p>
         <p className="saved-news__header_info">
@@ -22,7 +22,7 @@ function SavedNewsHeader({ totalSaved, keywords, handleMenuClick, isOpen }) {
           </span>
         </p>
       </div>
-    </header>
+    </section>
   );
 }
 

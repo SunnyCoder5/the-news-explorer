@@ -27,7 +27,7 @@
   color: white;
 }
 
-.nav__link-saved {
+.nav__link_page_saved {
   color: #1a1b22;
   padding-top: 28px;
   padding-bottom: 25px;
@@ -36,7 +36,7 @@
   border-color: #1a1b22;
 }
 
-.nav__link_current_saved-news {
+.nav__link_current_page_saved-news {
   border: none;
   color: #1a1b22;
 }
@@ -45,7 +45,7 @@
   color: #b6bcbf;
 }
 
-.nav__link_current_home {
+.nav__link_current_page_home {
   padding-top: 28px;
   padding-bottom: 25px;
   border-bottom: 3px solid;
@@ -57,7 +57,7 @@
   background-color: transparent;
   width: 112px;
   font-size: 18px;
-  padding: 12px;
+  padding: 8px;
   display: flex;
   line-height: 24px;
   justify-content: space-between;
@@ -72,7 +72,7 @@
   border-color: #fff;
 }
 
-.nav__current-user_saved {
+.nav__current-user_page_saved {
   border: 1px solid #1a1b22;
 }
 
@@ -105,7 +105,7 @@
   border-style: none;
 }
 
-.nav__current-user_signout_saved {
+.nav__current-user_signout_page_saved {
   background-image: url(../../assets/sign-out-saved.svg);
   background-color: transparent;
   background-repeat: no-repeat;
@@ -192,7 +192,7 @@
     height: 3px;
   }
 
-  .nav__current-user_signout_saved {
+  .nav__current-user_signout_page_saved {
     margin-left: 0px;
     margin-right: 6px;
     height: 3px;
@@ -203,13 +203,13 @@
     margin-right: 16px;
   }
 
-  .nav__link-saved {
+  .nav__link_page_saved {
     width: 160px;
     padding-top: 21px;
     padding-bottom: 21px;
   }
 
-  .nav__link_current_home {
+  .nav__link_current_page_home {
     padding: 21px 0;
   }
 

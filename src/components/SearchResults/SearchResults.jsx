@@ -13,7 +13,7 @@ function SearchResults({
 }) {
   const [numResults, setNumResults] = useState(3);
   return (
-    <div className="search-results">
+    <section className="search-results">
       <NewsCardsList
         handleLoginClick={handleLoginClick}
         numResults={numResults}
@@ -29,7 +29,7 @@ function SearchResults({
       >
         Show more
       </button>
-    </div>
+    </section>
   );
 }
 

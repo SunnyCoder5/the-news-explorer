@@ -73,7 +73,7 @@
   }
 
   .saved-news__list {
-    padding: 0;
+    padding: 0 0 16px 0;
     grid-template-columns: 1fr;
     gap: 10px;
     justify-content: center;

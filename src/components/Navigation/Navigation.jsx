@@ -22,8 +22,8 @@ function Navigation({
           <button
             className={`nav__link nav__link_to-home ${
               pathname === '/'
-                ? 'nav__link_current_home'
-                : 'nav__link_current_saved-news'
+                ? 'nav__link_current_page_home'
+                : 'nav__link_current_page_saved-news'
             }`}
           >
             Home
@@ -34,7 +34,7 @@ function Navigation({
             <Link to="/saved-news" className="nav-link">
               <button
                 className={`nav__link nav__link_to-save ${
-                  pathname === '/saved-news' && 'nav__link-saved'
+                  pathname === '/saved-news' && 'nav__link_page_saved'
                 }`}
               >
                 Saved articles
@@ -43,7 +43,7 @@ function Navigation({
             <button
               onClick={onLogout}
               className={`nav__current-user ${
-                pathname === '/saved-news' && 'nav__current-user_saved'
+                pathname === '/saved-news' && 'nav__current-user_page_saved'
               }`}
             >
               <p
@@ -56,7 +56,7 @@ function Navigation({
               <div
                 className={`nav__link ${
                   pathname === '/saved-news'
-                    ? 'nav__current-user_signout_saved'
+                    ? 'nav__current-user_signout_page_saved'
                     : 'nav__current-user_signout'
                 }`}
               ></div>

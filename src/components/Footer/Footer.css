@@ -1,11 +1,11 @@
-.footer-container {
+.footer {
   width: 100%;
   display: flex;
   justify-content: center;
   background-color: #fff;
 }
 
-.footer {
+.footer__container {
   display: flex;
   margin: 0;
   padding: 0 104px;
@@ -70,7 +70,7 @@
   gap: 40px;
   margin-left: 40px;
   align-items: center;
-  padding-right: 106px;
+  padding-right: 0;
   padding-top: 0;
 }
 
@@ -100,7 +100,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .footer {
+  .footer__container {
     height: 64px;
     padding: 24px 40px 18px;
   }
@@ -124,11 +124,11 @@
 }
 
 @media screen and (max-width: 575px) {
-  .footer-container {
+  .footer {
     padding: 0;
   }
 
-  .footer {
+  .footer__container {
     height: 178px;
     flex-direction: column-reverse;
     margin: 0;

@@ -266,14 +266,16 @@ function App() {
                   path="/saved-news"
                   element={
                     <ProtectedRoute isLoggedIn={isLoggedIn}>
-                      <SavedNews
-                        isLoggedIn={isLoggedIn}
-                        savedItems={savedItems}
-                        onLogout={onLogout}
-                        handleRemoveSave={handleRemoveSave}
-                        handleMenuClick={handleMenuClick}
-                        searchResults={searchResults}
-                      />
+                      <section className="saved-news">
+                        <SavedNews
+                          isLoggedIn={isLoggedIn}
+                          savedItems={savedItems}
+                          onLogout={onLogout}
+                          handleRemoveSave={handleRemoveSave}
+                          handleMenuClick={handleMenuClick}
+                          searchResults={searchResults}
+                        />
+                      </section>
                     </ProtectedRoute>
                   }
                 />
