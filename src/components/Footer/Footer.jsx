@@ -3,8 +3,8 @@ import { Link, NavLink } from 'react-router-dom';
 
 function Footer() {
   return (
-    <div className="footer">
-      <footer className="footer__container">
+    <footer className="footer">
+      <div className="footer__container">
         <p className="footer__copyright">
           © 2025 Supersite, Powered by News API
         </p>
@@ -46,8 +46,8 @@ function Footer() {
             </Link>
           </div>
         </nav>
-      </footer>
-    </div>
+      </div>
+    </footer>
   );
 }
 

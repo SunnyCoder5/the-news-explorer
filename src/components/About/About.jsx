@@ -3,7 +3,7 @@ import authorImage from '../../assets/author.jpg';
 
 function About() {
   return (
-    <div className="about">
+    <section className="about">
       <img src={authorImage} alt="author image" className="about__image" />
       <div className="about__content">
         <h2 className="about__title">About the author</h2>
@@ -18,7 +18,7 @@ function About() {
           industry-standard.
         </p>
       </div>
-    </div>
+    </section>
   );
 }
 

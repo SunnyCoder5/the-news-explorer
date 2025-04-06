@@ -9,18 +9,18 @@ function MobileMenu({ isOpen, onClose, handleLoginClick, isLoggedIn }) {
   return (
     <div className={`modal menu ${isOpen && 'modal_opened'}`}>
       <div
-        className={`menu__content menu__content_info menu__content_${currentPage}`}
+        className={`menu__content menu__content_info menu__content_page_${currentPage}`}
       >
-        <div className={`menu__header menu__header_${currentPage}`}>
+        <div className={`menu__header menu__header_page_${currentPage}`}>
           <Link to="/" className="menu__sitename_link">
-            <p className={`menu__sitename menu__sitename_${currentPage}`}>
+            <p className={`menu__sitename menu__sitename_page_${currentPage}`}>
               NewsExplorer
             </p>
           </Link>
           <button
             onClick={onClose}
             type="button"
-            className={`menu__close menu__close_${currentPage}`}
+            className={`menu__close menu__close_page_${currentPage}`}
           ></button>
         </div>
         <div className="menu__links">
@@ -28,7 +28,7 @@ function MobileMenu({ isOpen, onClose, handleLoginClick, isLoggedIn }) {
             <button
               onClick={onClose}
               type="button"
-              className={`menu__link menu__link_${currentPage} menu__link_to-home ${
+              className={`menu__link menu__link_page_${currentPage} menu__link_to-home ${
                 pathname === 'home' ? `menu__link_current_${currentPage}` : ''
               }`}
             >
@@ -51,7 +51,7 @@ function MobileMenu({ isOpen, onClose, handleLoginClick, isLoggedIn }) {
                 </button>
               </Link>
               <button
-                className={`menu__current-user menu__current-user_${currentPage}`}
+                className={`menu__current-user menu__current-user_page_${currentPage}`}
               >
                 <p
                   className={`menu__current-user_name menu__current-user_name_${currentPage} `}

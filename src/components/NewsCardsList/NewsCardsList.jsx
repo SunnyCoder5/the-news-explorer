@@ -15,7 +15,7 @@ function NewsCardsList({
   return (
     <section className="news-cards-section">
       <h2 className="news-cards-section__title">Search results</h2>
-      <ul className="news-cards__list">
+      <ul className="news-cards-section__list">
         {searchResults
           .map((item) => {
             savedItems.forEach((arrayItem) => {
