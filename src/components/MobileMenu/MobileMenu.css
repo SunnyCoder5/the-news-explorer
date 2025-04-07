@@ -34,10 +34,11 @@
   font-family: 'Roboto-Slab-Bold', 'Courier New', Courier, monospace;
   margin: 0;
   padding: 16px;
+  color: #fff;
   text-decoration: none;
 }
 
-.menu__sitename_home {
+.menu__sitename_page_home {
   color: #fff;
 }
 

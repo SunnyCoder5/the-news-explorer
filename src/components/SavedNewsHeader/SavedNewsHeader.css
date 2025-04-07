@@ -54,7 +54,7 @@
 
   .saved-news__header_info {
     font-size: 30px;
-    width: 335px;
+    max-width: 335px;
     line-height: 34px;
   }
 }
