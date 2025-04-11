@@ -32,9 +32,12 @@ function SavedNews({
   return (
     <div className="saved-news__container">
       <div className="saved-news__content">
-        <Header isLoggedIn={isLoggedIn} handleMenuClick={handleMenuClick} />
-        <SavedNewsHeader
+        <Header
+          isLoggedIn={isLoggedIn}
+          handleMenuClick={handleMenuClick}
           onLogout={onLogout}
+        />
+        <SavedNewsHeader
           totalSaved={savedItems.length}
           keywords={keywords}
           isOpen={isOpen}

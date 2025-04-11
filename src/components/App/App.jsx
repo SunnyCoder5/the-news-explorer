@@ -20,9 +20,8 @@ import { CurrentPageContext } from '../../contexts/CurrentPageContext.js';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import InfoModal from '../InfoModal/InfoModal';
 import MobileMenu from '../MobileMenu/MobileMenu';
-import { getSavedNews } from '../../utils/api.js';
 import { getNews } from '../../utils/NewsApi.js';
-import { saveItem, deleteItem } from '../../utils/api.js';
+import { saveItem, deleteItem, getSavedNews } from '../../utils/MainApi.js';
 import { authorize, register, checkToken } from '../../utils/auth.js';
 
 import * as auth from '../../utils/auth.js';
@@ -33,7 +32,7 @@ function App() {
   const [activeModal, setActiveModal] = useState('');
 
   const [currentPage, setCurrentPage] = useState('home');
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
 
   const [savedItems, setSavedItems] = useState([]);
 
@@ -53,11 +52,13 @@ function App() {
     setActiveModal('login');
   };
 
+  const token = localStorage.getItem('jwt');
+
   const closeActiveModal = () => {
     setActiveModal('');
   };
 
-  const handleRegisterModal = () => {
+  const handleRegisterClick = () => {
     setActiveModal('signUp');
   };
 
@@ -66,10 +67,10 @@ function App() {
     item.keyword = keyword;
     isItemInArray(item, savedItems)
       ? console.log('Item already saved')
-      : saveItem(item)
+      : saveItem(item, token)
           .then((card) => {
-            item._id = card._id;
-            setSavedItems([item, ...savedItems]);
+            item._id = card.data._id;
+            setSavedItems([card.data, ...savedItems]);
             console.log('Article saved');
           })
           .catch((err) => {
@@ -81,7 +82,7 @@ function App() {
   };
 
   const handleRemoveSave = (item) => {
-    deleteItem(item)
+    deleteItem(item, token)
       .then(() => {
         setSavedItems(
           savedItems.filter((card) => {
@@ -119,7 +120,7 @@ function App() {
         setSearchError(true);
       })
       .finally(() => setIsLoading(false));
-  }, [isLoading]);
+  }, [keyword]);
 
   function isItemInArray(item, array) {
     return array.some((arrayItem) => item.url === arrayItem.url);
@@ -183,10 +184,8 @@ function App() {
     register({ email, password, name })
       .then((res) => {
         console.log('Registration response:', res);
-        if (res.data) {
-          console.log('Setting modal to success');
-          setActiveModal('success');
-        }
+        setActiveModal('success');
+        console.log('Current activeModal value:', activeModal); // Add this
       })
       .catch((err) => {
         setServerError({
@@ -202,8 +201,7 @@ function App() {
     if (!token) {
       return;
     }
-    auth
-      .checkToken(token)
+    checkToken(token)
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser({
@@ -212,7 +210,7 @@ function App() {
         });
         getSavedNews(token)
           .then((items) => {
-            setSavedItems(items.reverse());
+            setSavedItems(items.data.reverse());
           })
           .catch((err) => {
             console.error('Failed to receive saved news items');
@@ -297,14 +295,18 @@ function App() {
                 onClose={closeActiveModal}
                 onSignUp={onSignUp}
                 openLoginModal={handleLoginClick}
+                serverError={serverError.regErrorError}
+                setServerError={setServerError}
               />
             )}
             {activeModal === 'login' && (
               <LoginModal
                 isOpen={activeModal === 'login'}
                 onClose={closeActiveModal}
-                openRegisterModal={handleRegisterModal}
+                handleRegisterClick={handleRegisterClick}
                 onLogIn={onLogIn}
+                serverError={serverError.loginError}
+                setServerError={setServerError}
               />
             )}
             {activeModal === 'success' && (

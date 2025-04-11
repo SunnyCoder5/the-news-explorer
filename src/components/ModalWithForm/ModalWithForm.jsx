@@ -6,6 +6,7 @@ function ModalWithForm({
   title,
   activeModal,
   onClose,
+  serverError,
   isOpen,
   onSubmit,
 }) {
@@ -20,6 +21,9 @@ function ModalWithForm({
         ></button>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
+          <span className="modal__error modal__error_visible">
+            {serverError}
+          </span>
         </form>
       </div>
     </div>
