@@ -3,7 +3,7 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import Header from '../Header/Header';
 //import { defaultNewsItems } from '../../utils/constants';
 import NewsCard from '../NewsCard/NewsCard';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function SavedNews({
@@ -16,7 +16,18 @@ function SavedNews({
   searchResults,
   handleSaveItem,
 }) {
-  const keywords = [];
+  const [keywords, setKeywords] = useState([]);
+
+  useEffect(() => {
+    const keywordsList = [];
+    savedItems.forEach((item) => {
+      if (!keywordsList.includes(item.keyword)) {
+        keywordsList.push(item.keyword);
+      }
+    });
+    setKeywords(keywordsList);
+  }, [savedItems]);
+
   const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
