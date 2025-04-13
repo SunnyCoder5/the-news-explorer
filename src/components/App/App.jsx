@@ -251,6 +251,7 @@ function App() {
                         isLoading={isLoading}
                         onSearch={onSearch}
                         searchError={searchError}
+                        handleRemoveSave={handleRemoveSave}
                         isLoggedIn={isLoggedIn}
                         savedItems={savedItems}
                       />
