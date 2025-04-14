@@ -15,6 +15,7 @@ function Main({
   searchError,
   isLoggedIn,
   savedItems,
+  handleRemoveSave,
 }) {
   return (
     <main className="main">
@@ -35,6 +36,7 @@ function Main({
             handleSaveItem={handleSaveItem}
             searchResults={searchResults}
             isLoggedIn={isLoggedIn}
+            handleRemoveSave={handleRemoveSave}
             savedItems={savedItems}
           />
         )}

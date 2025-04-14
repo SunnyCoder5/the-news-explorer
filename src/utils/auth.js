@@ -1,27 +1,30 @@
-// Mock server
+import { baseUrl, request } from './MainApi';
 
-export const authorize = (email, password) => {
-  return new Promise((resolve, reject) => {
-    resolve({
-      token: 'fake-jwt-token',
-      name: 'Fake User',
-      _id: 'fake-id',
-    });
+export const register = ({ email, password, name }) => {
+  return request(`${baseUrl}/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password, name }),
+  });
+};
+
+export const authorize = ({ email, password }) => {
+  return request(`${baseUrl}/signin`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
   });
 };
 
 export const checkToken = (token) => {
-  return new Promise((resolve, reject) => {
-    resolve({
-      data: { name: 'Fake User', email: 'fake@example.com', id: 'fake-id' },
-    });
-  });
-};
-
-export const register = ({ email, password, name }) => {
-  return new Promise((resolve, reject) => {
-    resolve({
-      data: { name, email, id: 'fake-id' },
-    });
+  return request(`${baseUrl}/users/me`, {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
   });
 };

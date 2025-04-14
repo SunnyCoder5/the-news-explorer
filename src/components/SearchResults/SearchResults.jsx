@@ -9,6 +9,7 @@ function SearchResults({
   handleLoginClick,
   handleSaveItem,
   searchResults,
+  handleRemoveSave,
   savedItems,
 }) {
   const [numResults, setNumResults] = useState(3);
@@ -21,6 +22,7 @@ function SearchResults({
         isLoggedIn={isLoggedIn}
         searchResults={searchResults}
         savedItems={savedItems}
+        handleRemoveSave={handleRemoveSave}
       />
       <button
         className="search-results__load-more"

@@ -1,6 +1,6 @@
 {
   "name": "the-news-explorer",
-  "homepage": "https://SunnyCoder5.github.io/he-news-explorer",
+  "homepage": "https://marychud.jumpingcrab.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* tripletenuser@dmarychud.jumpingcrab.com:/home/masterova260989/final-project-frontend"
   },
   "dependencies": {
     "react": "^18.3.1",

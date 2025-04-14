@@ -1,4 +1,4 @@
-export const defaultNewsItems = [
+/*export const defaultNewsItems = [
   {
     _id: 0,
     source: {
@@ -67,6 +67,7 @@ export const defaultNewsItems = [
     keyword: 'Photography',
   },
 ];
+*/
 
 export const APIkey = 'f477c0fbbd2c469aa31d0662334eaaa3';
 

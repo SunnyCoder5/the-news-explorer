@@ -11,15 +11,16 @@ function NewsCard({
   handleSaveItem,
   handleRemoveSave,
 }) {
-  //console.log('News item data:', JSON.stringify(item, null, 2));
-
+  console.log('Props received:', { handleRemoveSave, isLoggedIn, item });
   const { pathname } = useLocation();
 
   const currentPage = useContext(CurrentPageContext);
   //const fallbackImage = 'https://placehold.co/600x400?text=No+Image';
 
   const onSave = () => {
-    handleSaveItem(item);
+    if (!item.isSaved) {
+      handleSaveItem(item);
+    }
   };
 
   const onRemove = () => {
@@ -48,7 +49,7 @@ function NewsCard({
                   ? 'card__save-btn card__save-btn_checked'
                   : 'card__save-btn card__save-btn_unchecked'
               } `}
-              onClick={onSave}
+              onClick={item.isSaved ? onRemove : onSave}
             ></button>
           ) : (
             <>
